@@ -7,7 +7,7 @@ function App() {
   const { theme } = useContext(ThemeContext)
 
   return (
-    <div data-theme={theme}>
+    <div data-theme={theme} className='min-h-screen'>
       <RouterProvider router={routes}></RouterProvider>
     </div>
   );
