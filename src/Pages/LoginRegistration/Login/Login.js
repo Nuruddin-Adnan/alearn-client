@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import { useContext } from 'react';
-import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { FaFacebook, FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const [error, setError] = useState('This is erroe');
+    const [error, setError] = useState('');
     const { googleSignIn, githubSignIn, facebookSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -31,14 +31,14 @@ const Login = () => {
             .catch(error => setError(error.message))
     }
 
-    // const handleFacebookSignIn = () => {
-    //     setError('')
-    //     facebookSignIn()
-    //         .then(() => {
-    //             navigate(from, { replace: true })
-    //         })
-    //         .catch(error => setError(error.message))
-    // }
+    const handleFacebookSignIn = () => {
+        setError('')
+        facebookSignIn()
+            .then(() => {
+                navigate(from, { replace: true })
+            })
+            .catch(error => setError(error.message))
+    }
 
 
     return (
@@ -80,9 +80,10 @@ const Login = () => {
                                 </div>
                             </form>
                             <div className="divider">OR</div>
-                            <div className='grid md:grid-cols-2 gap-3 text-center'>
+                            <div className='grid md:grid-cols-3 gap-3 text-center'>
                                 <button onClick={handleGoogleSignIn} className="btn btn-outline"><FaGoogle className='text-xl font-bold mr-1'></FaGoogle> Google</button>
                                 <button onClick={handleGithubSignIn} className="btn btn-outline"><FaGithub className='text-xl font-bold mr-1'></FaGithub> Github</button>
+                                <button onClick={handleFacebookSignIn} className="btn btn-outline"><FaFacebook className='text-xl font-bold mr-1'></FaFacebook> Facebook</button>
                             </div>
                             <p className='text-sm text-center mt-2'>Don't have an account? <Link className='font-bold underline hover:text-secondary-500' to='/registration'>Register Now</Link></p>
                         </div>
