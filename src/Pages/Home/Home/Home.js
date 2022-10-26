@@ -23,7 +23,7 @@ const Home = () => {
                     <div className="grid md:grid-cols-2 gap-5">
                         {
                             categories.map(category =>
-                                <Link key={category.id} className="card card-compact hover:border-primary border bg-base-100 shadow-xl">
+                                <Link to={`/course/category/${category.categoryName}`} key={category.id} className="card card-compact hover:border-primary border bg-base-100 shadow-xl">
                                     <div className="card-body">
                                         <h2 className="card-title"><AiOutlineCheckCircle></AiOutlineCheckCircle> {category.categoryName}</h2>
                                     </div>
@@ -38,7 +38,7 @@ const Home = () => {
             <div className="container mx-auto my-10">
                 <div className="hero max-w-5xl mx-auto">
                     <div className="hero-content flex-col lg:flex-row-reverse">
-                        <img src="https://placeimg.com/260/400/arch" className="max-w-sm rounded-lg shadow-2xl" />
+                        <img src="https://placeimg.com/260/400/arch" alt='premium' className="max-w-sm rounded-lg shadow-2xl" />
                         <div>
                             <h2 className="text-5xl font-bold">Get Premium Access!</h2>
                             <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>

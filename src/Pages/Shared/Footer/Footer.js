@@ -22,7 +22,7 @@ const Footer = () => {
                 <div>
                     <span className="footer-title">Category</span>
                     {
-                        categories.map(category => <Link key={category.id} to='/' className="link link-hover">{category.categoryName}</Link>)
+                        categories.map(category => <Link key={category.id} to={`/course/category/${category.categoryName}`} className="link link-hover">{category.categoryName}</Link>)
                     }
                 </div>
                 <div>
