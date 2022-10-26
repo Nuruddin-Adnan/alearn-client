@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
-import { FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 
 export const AuthContext = createContext();
 
 const auth = getAuth(app);
-
-
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -33,13 +31,20 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, facebookProvider)
     }
 
+    const createUser = (email, password) => {
+        return createUserWithEmailAndPassword(auth, email, password)
+    }
+
+    const logIn = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+    }
+
     const logOut = () => {
         return signOut(auth)
     }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            // console.log('auth state change', currentUser);
             if (currentUser || currentUser === null || currentUser.emailVerified) {
                 setUser(currentUser);
             }
@@ -58,6 +63,8 @@ const AuthProvider = ({ children }) => {
         googleSignIn,
         githubSignIn,
         facebookSignIn,
+        createUser,
+        logIn,
         logOut
     };
 

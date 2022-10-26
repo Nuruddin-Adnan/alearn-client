@@ -1,7 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Registration = () => {
+    const [error, setError] = useState('hello error');
+    const { createUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        setError('');
+
+        const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        createUser(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => setError(error.message))
+    }
+
     return (
         <div>
             <div className="hero min-h-screen w-full max-w-full bg-base-200 border-b">
@@ -12,33 +40,41 @@ const Registration = () => {
                     </div>
                     <div className="card flex-shrink-0 w-full  shadow-2xl bg-base-100">
                         <div className="card-body">
-                            <form>
+                            {
+                                error && <div className="alert alert-error shadow-lg">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                        <span>Error! {error}</span>
+                                    </div>
+                                </div>
+                            }
+                            <form onSubmit={handleSubmit}>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Full Name</span>
                                     </label>
-                                    <input type="text" placeholder="full name" className="input input-bordered" />
+                                    <input type="text" name='name' placeholder="full name" className="input input-bordered" />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Photo URL</span>
                                     </label>
-                                    <input type="text" placeholder="photo url" className="input input-bordered" />
+                                    <input type="text" name='photoURL' placeholder="photo url" className="input input-bordered" />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
-                                    <input type="email" placeholder="email" className="input input-bordered" />
+                                    <input type="email" name='email' placeholder="email" className="input input-bordered" />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input type="password" placeholder="password" className="input input-bordered" />
+                                    <input type="password" name='password' placeholder="password" className="input input-bordered" />
                                 </div>
                                 <div className="form-control mt-6">
-                                    <button className="btn btn-primary">Register</button>
+                                    <button type='submit' className="btn btn-primary">Register</button>
                                 </div>
                             </form>
                             <p className='text-sm text-center mt-2'>Already have an account? <Link className='font-bold underline hover:text-secondary-500' to='/login'>Login Now</Link></p>
