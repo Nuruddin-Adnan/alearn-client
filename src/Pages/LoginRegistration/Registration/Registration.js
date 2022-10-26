@@ -1,11 +1,12 @@
+import { isEmpty } from '@firebase/util';
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Registration = () => {
-    const [error, setError] = useState('hello error');
-    const { createUser } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -22,10 +23,25 @@ const Registration = () => {
         const email = form.email.value;
         const password = form.password.value;
 
+        // if (isEmpty(name)) {
+        //     console.log('nam nai');
+        // } else {
+        //     console.log('ace');
+        // }
+
+        // return;
+
         createUser(email, password)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
+            .then(() => {
+                updateUserProfile({
+                    displayName: name,
+                    photoURL: photoURL
+                })
+                    .then(() => {
+                        form.reset();
+                        navigate(from, { replace: true })
+                    })
+                    .catch(error => setError(error.message))
             })
             .catch(error => setError(error.message))
     }
