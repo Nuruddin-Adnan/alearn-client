@@ -10,6 +10,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/LoginRegistration/Login/Login";
 import Registration from "../../Pages/LoginRegistration/Registration/Registration";
 import Profile from "../../Pages/Profile/Profile/Profile";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -65,7 +66,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/checkout/:id',
-                element: <Checkout></Checkout>,
+                element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
                 loader: ({ params }) => {
                     const id = parseInt(params.id);
                     const course = fetch(`https://alearn-server.vercel.app/course/${id}`);
@@ -82,7 +83,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/profile',
-                element: <Profile></Profile>,
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>,
             }
         ]
     }
