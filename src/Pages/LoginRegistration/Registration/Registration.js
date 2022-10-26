@@ -23,13 +23,27 @@ const Registration = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        // if (isEmpty(name)) {
-        //     console.log('nam nai');
-        // } else {
-        //     console.log('ace');
-        // }
+        if (isEmpty(name.trim())) {
+            setError('Please provide your full name');
+            return;
+        }
+        else if ((name.trim()).length < 3) {
+            setError('Name should be atleast 3 character');
+            return;
+        }
+        else if (isEmpty(photoURL.trim())) {
+            setError('Please provide a valid photo URL');
+            return;
+        }
+        else if (isEmpty(email.trim())) {
+            setError('Please provide a valid email address');
+            return;
+        }
+        else if (isEmpty(password.trim())) {
+            setError('Password can not be empty');
+            return;
+        }
 
-        // return;
 
         createUser(email, password)
             .then(() => {

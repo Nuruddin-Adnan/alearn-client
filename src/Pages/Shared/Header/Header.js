@@ -12,7 +12,7 @@ const Header = () => {
 
     const handleLogOut = () => {
         logOut()
-            .then(() => { console.log('signout successfull'); })
+            .then(() => { })
             .catch(error => console.error(error.message))
     }
 
