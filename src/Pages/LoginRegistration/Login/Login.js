@@ -7,7 +7,7 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
     const [error, setError] = useState('');
-    const { googleSignIn, githubSignIn, facebookSignIn } = useContext(AuthContext);
+    const { googleSignIn, githubSignIn, facebookSignIn, logIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -40,6 +40,22 @@ const Login = () => {
             .catch(error => setError(error.message))
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setError('');
+
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        logIn(email, password)
+            .then(() => {
+                form.reset();
+                navigate(from, { replace: true });
+            })
+            .catch(error => setError(error.message))
+    }
+
 
     return (
         <div>
@@ -59,7 +75,7 @@ const Login = () => {
                                     </div>
                                 </div>
                             }
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Email</span>
