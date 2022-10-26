@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const CourseCard = ({ crs }) => {
     return (
-        <div key={crs.id} className="card bg-base-100 shadow-xl border">
+        <div className="card bg-base-100 shadow-xl border">
             <figure><img className='w-full' src={crs.thumbnail} alt="course thumbnail" /></figure>
             <div className="card-body">
                 <h2 className="card-title">
@@ -18,7 +18,7 @@ const CourseCard = ({ crs }) => {
                     <div className="text-yellow-500">Ratings({crs.ratings}*)</div>
                     <div className="text-xl font-bold text-slate-500">${crs.courseFee}</div>
                 </div>
-                <Link to='/course-details' className='btn btn-accent'>Course Details</Link>
+                <Link to={`/course-details/${crs.id}`} className='btn btn-accent'>Course Details</Link>
             </div>
         </div>
     );

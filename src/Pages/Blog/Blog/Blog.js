@@ -2,7 +2,7 @@ import React from 'react';
 
 const Blog = () => {
     return (
-        <div className='container max-w-3xl mx-auto md:my-10 my-5'>
+        <div className='container max-w-3xl mx-auto md:my-10 my-5 px-5'>
             <div className="card bg-primary text-primary-content mb-5">
                 <div className="card-body">
                     <h2 className="card-title text-yellow-300 border-b">#01 what is cors?</h2>

@@ -16,24 +16,24 @@ const Header = () => {
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52">
-                            <li><NavLink to='/'>Home</NavLink></li>
-                            <li><NavLink to='/course'>Course</NavLink></li>
-                            <li><NavLink to='/faq'>FAQ</NavLink></li>
-                            <li><NavLink to='/blog'>Blog</NavLink></li>
+                        <ul tabIndex={0} className="menu menu-compact dropdown-content bg-base-100 mt-3 p-2 shadow rounded-box w-52">
+                            <li><NavLink to='/home' className='font-medium'>Home</NavLink></li>
+                            <li><NavLink to='/course' className='font-medium'>Course</NavLink></li>
+                            <li><NavLink to='/faq' className='font-medium'>FAQ</NavLink></li>
+                            <li><NavLink to='/blog' className='font-medium'>Blog</NavLink></li>
                         </ul>
                     </div>
-                    <Link to='/' className="btn btn-ghost normal-case text-xl">
+                    <Link to='/' className="btn btn-ghost normal-case text-xl lg:pl-3 pl-0">
                         <img src={logo} alt="logo" className='mr-2' />
                         ALEARN
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
-                        <li><NavLink to='/home'>Home</NavLink></li>
-                        <li><NavLink to='/course'>Course</NavLink></li>
-                        <li><NavLink to='/faq'>FAQ</NavLink></li>
-                        <li><NavLink to='/blog'>Blog</NavLink></li>
+                        <li><NavLink to='/home' className='font-medium'>Home</NavLink></li>
+                        <li><NavLink to='/course' className='font-medium'>Course</NavLink></li>
+                        <li><NavLink to='/faq' className='font-medium'>FAQ</NavLink></li>
+                        <li><NavLink to='/blog' className='font-medium'>Blog</NavLink></li>
                     </ul>
                 </div>
                 <div className="navbar-end">
@@ -48,7 +48,7 @@ const Header = () => {
                     </label>
                     <div className="divider divider-horizontal"></div>
                     <Link to='/login' className="btn">Log in</Link>
-                    <div className="dropdown dropdown-end">
+                    {/* <div className="dropdown dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle tooltip tooltip-left" data-tip="user name">
                             <div className="avatar">
                                 <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -60,7 +60,7 @@ const Header = () => {
                             <li><Link to='/profile'> <FaUserAlt></FaUserAlt> Profile</Link></li>
                             <li><button><FaSignOutAlt></FaSignOutAlt> Logout</button></li>
                         </ul>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>

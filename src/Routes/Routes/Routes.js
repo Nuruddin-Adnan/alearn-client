@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layout/Main";
 import Blog from "../../Pages/Blog/Blog/Blog";
+import Checkout from "../../Pages/Checkout/Checkout/Checkout";
 import Course from "../../Pages/Course/Course/Course";
 import Courses from "../../Pages/Course/Courses/Courses";
 import CourseDetails from "../../Pages/CourseDetails/CourseDetails/CourseDetails";
@@ -54,8 +55,22 @@ export const routes = createBrowserRouter([
                 element: <Blog></Blog>,
             },
             {
-                path: '/course-details',
-                element: <CourseDetails></CourseDetails>
+                path: '/course-details/:id',
+                element: <CourseDetails></CourseDetails>,
+                loader: ({ params }) => {
+                    const id = parseInt(params.id);
+                    const course = fetch(`https://alearn-server.vercel.app/course/${id}`);
+                    return course
+                }
+            },
+            {
+                path: '/checkout/:id',
+                element: <Checkout></Checkout>,
+                loader: ({ params }) => {
+                    const id = parseInt(params.id);
+                    const course = fetch(`https://alearn-server.vercel.app/course/${id}`);
+                    return course
+                }
             },
             {
                 path: '/login',
