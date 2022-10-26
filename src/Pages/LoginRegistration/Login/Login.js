@@ -1,11 +1,12 @@
 import React from 'react';
+import { FaGift, FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
         <div>
             <div className="hero min-h-screen bg-base-200 border-b">
-                <div className="hero-content flex-col">
+                <div className="hero-content w-full max-w-xl flex-col">
                     <div className="text-center ">
                         <h1 className="text-5xl font-bold mb-2">Login now!</h1>
                         <p>Welcome to the best learning platform</p>
@@ -33,10 +34,9 @@ const Login = () => {
                                 </div>
                             </form>
                             <div className="divider">OR</div>
-                            <div className='grid md:grid-cols-3 gap-3 text-center'>
-                                <button className="btn btn-outline">Google</button>
-                                <button className="btn btn-outline">Github</button>
-                                <button className="btn btn-outline">Facebook</button>
+                            <div className='grid md:grid-cols-2 gap-3 text-center'>
+                                <button className="btn btn-outline"><FaGoogle className='text-xl font-bold mr-1'></FaGoogle> Google</button>
+                                <button className="btn btn-outline"><FaGithub className='text-xl font-bold mr-1'></FaGithub> Github</button>
                             </div>
                             <p className='text-sm text-center mt-2'>Don't have an account? <Link className='font-bold underline hover:text-secondary-500' to='/registration'>Register Now</Link></p>
                         </div>

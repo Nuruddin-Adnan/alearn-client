@@ -8,6 +8,7 @@ import Faq from "../../Pages/Faq/Faq/Faq";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/LoginRegistration/Login/Login";
 import Registration from "../../Pages/LoginRegistration/Registration/Registration";
+import Profile from "../../Pages/Profile/Profile/Profile";
 
 export const routes = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/registration',
                 element: <Registration></Registration>,
+            },
+            {
+                path: '/profile',
+                element: <Profile></Profile>,
             }
         ]
     }
