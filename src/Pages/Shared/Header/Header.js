@@ -4,9 +4,17 @@ import { Link, NavLink } from 'react-router-dom';
 import { ThemeContext } from '../../../contexts/ThemeProvider/ThemeProvider';
 import logo from '../../../assets/logo.png';
 import { FaSignOutAlt, FaUserAlt } from "react-icons/fa";
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
     const { toggleTheme } = useContext(ThemeContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error.message))
+    }
 
     return (
         <header className='shadow'>
@@ -47,21 +55,23 @@ const Header = () => {
 
                     </label>
                     <div className="divider divider-horizontal"></div>
-                    <Link to='/login' className="btn">Log in</Link>
-                    {/* <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle tooltip tooltip-left" data-tip="user name">
-                            <div className="avatar">
-                                <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                    <img src="https://placeimg.com/192/192/people" alt='avatar' />
+                    {
+                        user?.uid ? <div className="dropdown dropdown-end">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle tooltip tooltip-left" data-tip={user?.displayName || 'No data found'}>
+                                <div className="avatar">
+                                    <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                        <img src={user?.photoURL} alt='avatar' />
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                        <ul tabIndex={0} className="menu border dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
-                            <li><Link to='/profile'> <FaUserAlt></FaUserAlt> Profile</Link></li>
-                            <li><button><FaSignOutAlt></FaSignOutAlt> Logout</button></li>
-                        </ul>
-                    </div> */}
-
+                            </label>
+                            <ul tabIndex={0} className="menu border dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+                                <li><Link to='/profile'> <FaUserAlt></FaUserAlt> Profile</Link></li>
+                                <li><button onClick={handleLogOut}><FaSignOutAlt></FaSignOutAlt> Logout</button></li>
+                            </ul>
+                        </div>
+                            :
+                            <Link to='/login' className="btn">Log in</Link>
+                    }
                 </div>
             </div>
         </header>
