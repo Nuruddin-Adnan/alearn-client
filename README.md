@@ -7,10 +7,10 @@ The best learning platform
 
 ### Features 
 
-✅ Multiple Category
-✅ Easy to access
-✅ Course Download Option
-✅ Premium access
-✅ FAQ page
-✅ 404 page
-✅ Blog page
+- [x] Multiple Category
+- [x] Easy to access
+- [x] Course Download Option
+- [x] Premium access
+- [x] FAQ page
+- [x] 404 page
+- [x] Blog page
