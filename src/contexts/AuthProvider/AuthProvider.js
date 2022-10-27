@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { createContext } from 'react';
 import { createUserWithEmailAndPassword, FacebookAuthProvider, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import app from '../../firebase/firebase.config';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const AuthContext = createContext();
 
@@ -67,6 +69,19 @@ const AuthProvider = ({ children }) => {
 
     }, [])
 
+    // resistration successull and email varification toast message
+    const notify = (message) => toast.success(message, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+    });
+
+
     const authInfo = {
         user,
         loading,
@@ -77,12 +92,14 @@ const AuthProvider = ({ children }) => {
         logIn,
         logOut,
         updateUserProfile,
-        verifyEmail
+        verifyEmail,
+        notify
     };
 
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
+            <ToastContainer />
         </AuthContext.Provider>
     );
 };

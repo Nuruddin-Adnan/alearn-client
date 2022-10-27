@@ -4,11 +4,13 @@ import { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
+
 const Registration = () => {
     const [error, setError] = useState('');
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile, verifyEmail, notify } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+
 
     const from = location.state?.from?.pathname || '/';
 
@@ -35,6 +37,10 @@ const Registration = () => {
             setError('Please provide a valid photo URL');
             return;
         }
+        else if ((photoURL.trim()).length > 150) {
+            setError('Photo URL is too long. It should be max 100 characters');
+            return;
+        }
         else if (isEmpty(email.trim())) {
             setError('Please provide a valid email address');
             return;
@@ -53,7 +59,12 @@ const Registration = () => {
                 })
                     .then(() => {
                         form.reset();
-                        navigate(from, { replace: true })
+                        verifyEmail()
+                            .then(() => {
+                                navigate(from, { replace: true })
+                                notify('Resistration Success! Please varify email');
+                            })
+                            .catch(error => setError(error.message))
                     })
                     .catch(error => setError(error.message))
             })

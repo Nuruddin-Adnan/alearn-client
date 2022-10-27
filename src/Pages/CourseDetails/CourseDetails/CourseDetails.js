@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { FaDownload } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
+import Pdf from "react-to-pdf";
+
+const ref = createRef();
 
 const CourseDetails = () => {
     const course = useLoaderData();
@@ -22,7 +25,7 @@ const CourseDetails = () => {
                     <div className="lg:col-span-4">
                         <div className="card bg-base-100 shadow-xl border">
                             <figure><img className='w-full' src={thumbnail} alt="course thumbnail" /></figure>
-                            <div className="card-body">
+                            <div ref={ref} className="card-body">
                                 <h2 className="card-title">
                                     {title}
                                 </h2>
@@ -49,7 +52,9 @@ const CourseDetails = () => {
                                     <div className="text-xl font-bold text-slate-500">${courseFee}</div>
                                 </div>
                                 <br />
-                                <button className='btn btn-accent'><FaDownload className='mr-2'></FaDownload> Download</button>
+                                <Pdf targetRef={ref} filename="code-example.pdf">
+                                    {({ toPdf }) => <button onClick={toPdf} className='btn btn-accent'><FaDownload className='mr-2'></FaDownload> Download PDF</button>}
+                                </Pdf>
                                 <Link to={`/checkout/${id}`} className='btn btn-warning'>Get premium access</Link>
                             </div>
                         </div>
