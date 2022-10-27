@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NotFound = () => {
     return (
-        <div className="text-center w-full h-screen bg-[#fff300] grid place-items-center">
+        <div className="text-center w-full h-screen bg-[#0cd9d1] grid place-items-center">
             <div className='p-5'>
                 <img src="https://cdn.jsdelivr.net/gh/ahmedhosna95/upload@1731955f/sad404.svg" alt="not found" className='mx-auto' />
                 <h1 className='md:text-8xl text-5xl font-bold'>PAGE 404</h1>
