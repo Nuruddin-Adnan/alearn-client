@@ -52,7 +52,7 @@ const CourseDetails = () => {
                                     <div className="text-xl font-bold text-slate-500">${courseFee}</div>
                                 </div>
                                 <br />
-                                <Pdf targetRef={ref} filename="code-example.pdf">
+                                <Pdf targetRef={ref} filename="alearn-course.pdf">
                                     {({ toPdf }) => <button onClick={toPdf} className='btn btn-accent'><FaDownload className='mr-2'></FaDownload> Download PDF</button>}
                                 </Pdf>
                                 <Link to={`/checkout/${id}`} className='btn btn-warning'>Get premium access</Link>
